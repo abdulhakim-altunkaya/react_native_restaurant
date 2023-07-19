@@ -3,7 +3,6 @@ import axios from "axios";
 export default axios.create({
     baseURL: "https://api.yelp.com/v3/businesses",
     headers: {
-        Authorization: "Bearer ZSRYBkslduRyQ8JpilkdOn85xtIaKY46XYN-dZemJiwCStL__mdL5ctEolNZeTqRsZ-1JQSENZ53xOBDWxwXjkVPoO5WNcHI7EoeqfE_rSu8ewLNm8JkT7ldJo-xZHYx",
-        
+        Authorization: "Bearer igQChSWrWpDCtgYH2uCFdkrYNbSy2Gk8jLLyrxJMRHMFrJ6ZIYlUU143l1YG88SYNR8VvcnS965j6Llfwwy3HqovwGi6qRzeTHSwHDMEcUfWQdMIoNf1onraS6K3ZHYx", 
     }
 })

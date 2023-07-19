@@ -5,7 +5,10 @@ import { FontAwesome } from '@expo/vector-icons';
 const SearchBar = ({searchTerm, onTermChange, onTermSubmit}) => {
   return(
     <View style={styles.inputContainer}>
-        <FontAwesome name="search" style={styles.iconStyle}/>
+        <FontAwesome 
+        name="search" 
+        style={styles.iconStyle}
+        onPress={onTermSubmit}/>
         <TextInput 
         autoCapitalize="none"
         autoCorrect={false}
@@ -13,7 +16,8 @@ const SearchBar = ({searchTerm, onTermChange, onTermSubmit}) => {
         placeholder="Search" 
         value={searchTerm}
         onChangeText={newTerm => onTermChange(newTerm)} 
-        onEndEditing={onTermSubmit}/>
+        //onEndEditing={onTermSubmit}
+        />
     </View>
   )
 }
