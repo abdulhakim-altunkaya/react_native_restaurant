@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {View, Text, StyleSheet} from "react-native";
 import SearchBar from "../components/SearchBar";
+import ResultsList from "../components/ResultsList";
 import yelp from "../API/yelp";
 
 const SearchScreen = () => {
@@ -26,6 +27,11 @@ const SearchScreen = () => {
     searchAPI("sushi");
   }, [])
   
+  const filterResults = (price) => {
+    //price === "$" "$$" "$$$"
+    const filteredResults = results.filter(result => result.price === price);
+    return filteredResults;
+  }
 
   return(
     <View>
@@ -34,7 +40,9 @@ const SearchScreen = () => {
           onTermChange={ (newTerm) => setSearchWord(newTerm) } 
           onTermSubmit={() => searchAPI(searchWord)}
         />
-        <Text>{results.length}</Text>
+        <ResultsList childResults={filterResults("$")} title="Cost Effective" />
+        <ResultsList childResults={filterResults("$$")} title="Bit Pricier" />
+        <ResultsList childResults={filterResults("$$$")} title="Big Spender" />
         {errMes.length > 1 ? <Text>{errMes}</Text> : null}
     </View>
   )
