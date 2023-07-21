@@ -3,15 +3,18 @@ import {View, Text, StyleSheet, FlatList, Image} from "react-native";
 
 function ResultDetail({restaurant}) {
   return (
-    <View>
+    <View style={styles.containerStyle}>
         <Image source={{uri: restaurant.image_url}} style={styles.imgStyle}/>
         <Text style={styles.titleStyle}>{restaurant.name}  </Text>
-        <Text> {restaurant.rating} Stars, {restaurant.review_count} Reviews</Text>
+        <Text>{restaurant.rating} Stars, {restaurant.review_count} Reviews</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+    containerStyle: {
+      marginLeft: 15,
+    },
     titleStyle: {
         fontSize: 15,
         fontStyle: "italic"
@@ -20,6 +23,7 @@ const styles = StyleSheet.create({
       width: 250,
       height:120,
       borderRadius: 4,
+      marginBottom: 5,
     },
 })
 
