@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {View, Text, StyleSheet, FlatList} from "react-native";
+import ResultDetail from "./ResultDetail";
 
 const ResultsList = ({title, childResults}) => {
   return (
@@ -11,7 +12,7 @@ const ResultsList = ({title, childResults}) => {
             data={childResults}
             keyExtractor={(element) => element.id} //If I have a property called "key", then no need of keyExtractor
             renderItem={({item}) => ( //this must be called item
-            <Text style={styles.resultStyle}> {item.name} </Text>
+              <ResultDetail restaurant={item} />
             )}
         />
     </View>
@@ -20,13 +21,10 @@ const ResultsList = ({title, childResults}) => {
 
 const styles = StyleSheet.create({
     titleStyle: {
-      fontSize: 18,
+      fontSize: 22,
       fontWeight: "bold",
     },
-    resultStyle: {
-      fontSize: 15,
-      fontStyle: "italic",
-    }
+
 })
 
 export default ResultsList
