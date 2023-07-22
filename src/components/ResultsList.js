@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {View, Text, StyleSheet, FlatList} from "react-native";
+import {View, Text, StyleSheet, FlatList, TouchableOpacity} from "react-native";
 import ResultDetail from "./ResultDetail";
 
-const ResultsList = ({title, childResults}) => {
+const ResultsList = ({title, childResults, childNav}) => {
   return (
     <View style={styles.rowContainer}>
         <Text style={styles.titleStyle}>{title} ({childResults.length} results)</Text>
@@ -12,7 +12,9 @@ const ResultsList = ({title, childResults}) => {
             data={childResults}
             keyExtractor={(element) => element.id} //If I have a property called "key", then no need of keyExtractor
             renderItem={({item}) => ( //this must be called item
-              <ResultDetail restaurant={item} />
+              <TouchableOpacity onPress={() => childNav.navigate("Result")}>
+                <ResultDetail restaurant={item} />
+              </TouchableOpacity>
             )}
         />
     </View>

@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import ResultsList from "../components/ResultsList";
 import yelp from "../API/yelp";
 
-const SearchScreen = () => {
+const SearchScreen = (props) => {
   const [searchWord, setSearchWord] = useState("");
   const [results, setResults] = useState([]);
   const [errMes, setErrMes] = useState("");
@@ -15,7 +15,7 @@ const SearchScreen = () => {
         params: {
           limit: 30,
           term: userInput,
-          location: "Denver",
+          location: "toronto",
         }
       });
       setResults(response.data.businesses);
@@ -24,7 +24,7 @@ const SearchScreen = () => {
     }
   }
   useEffect(() => {
-    searchAPI("sushi");
+    searchAPI("hamburger");
   }, [])
   
   const filterResults = (price) => {
@@ -34,25 +34,33 @@ const SearchScreen = () => {
   }
 
   return(
-    <View>
+    <View style={styles.mainContainer}>
         <SearchBar 
           searchTerm={searchWord} 
           onTermChange={ (newTerm) => setSearchWord(newTerm) } 
           onTermSubmit={() => searchAPI(searchWord)}
         />
-        <Text>
         <ScrollView>
-          <ResultsList  childResults={filterResults("$")} title="Cost Effective" />
-          <ResultsList childResults={filterResults("$$")} title="Bit Pricier" />
-          <ResultsList childResults={filterResults("$$$")} title="Big Spender" />
-          {errMes.length > 1 ? <Text>{errMes}</Text> : null}
+          <View>
+            
+            <ResultsList childResults={filterResults("$")} 
+              childNav={props.navigation} title="Cost Effective" />
+            <ResultsList childResults={filterResults("$$")} 
+              childNav={props.navigation} title="Bit Pricier" />
+            <ResultsList childResults={filterResults("$$$")} 
+              childNav={props.navigation} title="Big Spender" />
+            {errMes.length > 1 ? <Text>{errMes}</Text> : null}
+
+          </View>
         </ScrollView>
-        </Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
 
 })
 

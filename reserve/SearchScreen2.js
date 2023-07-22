@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {View, Text, StyleSheet} from "react-native";
-import SearchBar from "../components/SearchBar";
-import yelp from "../API/yelp";
-import useSearch from "../hooks/useSearch";
+import SearchBar from "../src/components/SearchBar";
+import yelp from "../src/API/yelp";
+import useSearch from "../src/hooks/useSearch";
 
 const SearchScreen = () => {
   const [searchWord, setSearchWord] = useState("");  
