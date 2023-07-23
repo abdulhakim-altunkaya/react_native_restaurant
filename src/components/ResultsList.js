@@ -1,8 +1,15 @@
 import React, {useState, useEffect} from "react";
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from "react-native";
 import ResultDetail from "./ResultDetail";
+import { withNavigation } from "react-navigation";
+//If we dont use withnavigation, then we need to import
+//navigation as a prop from searchscreen. Searchscreen also imports
+//it as a prop from react-navigation by default.
+const ResultsList = ({title, childResults, navigation}) => {
+  if(!childResults.length) {
+    return null;
+  }
 
-const ResultsList = ({title, childResults, childNav}) => {
   return (
     <View style={styles.rowContainer}>
         <Text style={styles.titleStyle}>{title} ({childResults.length} results)</Text>
@@ -12,7 +19,7 @@ const ResultsList = ({title, childResults, childNav}) => {
             data={childResults}
             keyExtractor={(element) => element.id} //If I have a property called "key", then no need of keyExtractor
             renderItem={({item}) => ( //this must be called item
-              <TouchableOpacity onPress={() => childNav.navigate("Result")}>
+              <TouchableOpacity onPress={() => navigation.navigate("Result", {id: item.id})}>
                 <ResultDetail restaurant={item} />
               </TouchableOpacity>
             )}
@@ -34,4 +41,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default ResultsList
+export default withNavigation(ResultsList);

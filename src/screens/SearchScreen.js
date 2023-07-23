@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import ResultsList from "../components/ResultsList";
 import yelp from "../API/yelp";
 
-const SearchScreen = (props) => {
+const SearchScreen = () => {
   const [searchWord, setSearchWord] = useState("");
   const [results, setResults] = useState([]);
   const [errMes, setErrMes] = useState("");
@@ -44,11 +44,11 @@ const SearchScreen = (props) => {
           <View>
             
             <ResultsList childResults={filterResults("$")} 
-              childNav={props.navigation} title="Cost Effective" />
+              title="Cost Effective" />
             <ResultsList childResults={filterResults("$$")} 
-              childNav={props.navigation} title="Bit Pricier" />
+              title="Bit Pricier" />
             <ResultsList childResults={filterResults("$$$")} 
-              childNav={props.navigation} title="Big Spender" />
+              title="Big Spender" />
             {errMes.length > 1 ? <Text>{errMes}</Text> : null}
 
           </View>
